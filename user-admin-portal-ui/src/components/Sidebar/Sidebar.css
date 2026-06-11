@@ -1,0 +1,19 @@
+.sidebar {
+  width: 220px;
+  background-color: #f3f4f6;
+  min-height: calc(100vh - 60px);
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+.sidebar a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+
+.sidebar a:hover {
+  background-color: #dbeafe;
+  border-radius: 5px;
+}
