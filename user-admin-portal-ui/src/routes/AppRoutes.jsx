@@ -9,6 +9,7 @@ import Unauthorized from "../pages/Unauthorized/Unauthorized";
 import NotFound from "../pages/NotFound/NotFound";
 import MainLayout from "../layouts/MainLayout";
 import AuthLayout from "../layouts/AuthLayout";
+import EditUser from "../pages/Users/EditUser";
 
 function AppRoutes() {
   return (
@@ -52,6 +53,7 @@ function AppRoutes() {
         <Route path="/profile/:id" element={<MainLayout><Profile /></MainLayout>} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/users/edit" element={<MainLayout><EditUser /></MainLayout>} />
       </Routes>
     </BrowserRouter>
   );
