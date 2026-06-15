@@ -5,12 +5,10 @@ export const register = (user) => {
 };
 
 export const refresh = () => {
-  const request = {
-    userId: localStorage.getItem("userId"),
-    refreshToken: localStorage.getItem("refreshToken")
-  };
-
-  return api.post("/auth/refresh-token", request);
+  return api.post(
+    "/auth/refresh-token",
+    {}
+  );
 };
 export const login = (user) => {
   return api.post("/auth/login", user);

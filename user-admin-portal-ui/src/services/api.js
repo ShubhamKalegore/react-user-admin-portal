@@ -2,22 +2,23 @@ import axios from "axios";
 import { refresh } from "./authService";
 
 const api = axios.create({
-  baseURL: "https://localhost:7265/api"
+  baseURL: "https://localhost:7265/api",
+  withCredentials: true
 });
 
-// Request Interceptor
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("accessToken");
+// Request Interceptor // not required as now used cookies
+// api.interceptors.request.use(
+//   (config) => {
+//     const token = localStorage.getItem("accessToken");
 
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+//     if (token) {
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
 
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+//     return config;
+//   },
+//   (error) => Promise.reject(error)
+// );
 
 // Response Interceptor
 api.interceptors.response.use(
@@ -31,7 +32,7 @@ api.interceptors.response.use(
       window.location.href = "/login";
       return Promise.reject(error);
     }
-
+/*
     if (
       error.response?.status === 401 &&
       !originalRequest._retry
@@ -63,6 +64,22 @@ api.interceptors.response.use(
       } catch (err) {
         localStorage.clear();
         window.location.href = "/login";
+        return Promise.reject(err);
+      }
+    }
+*/
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        await refresh();
+
+        return api(originalRequest);
+      } catch (err) {
+        localStorage.clear();
+        window.location.href = "/login";
+
         return Promise.reject(err);
       }
     }

@@ -18,8 +18,9 @@ const Login = () => {
     login(user)
       .then((response) => {
         if (response.data !== "Invalid credentials.") {
-          localStorage.setItem("accessToken", response.data.accessToken);
-          localStorage.setItem("refreshToken", response.data.refreshToken);
+          // Local storge 
+          // localStorage.setItem("accessToken", response.data.accessToken);
+          // localStorage.setItem("refreshToken", response.data.refreshToken);
           localStorage.setItem("userId", response.data.userId);
           navigate("/dashboard");
         }
