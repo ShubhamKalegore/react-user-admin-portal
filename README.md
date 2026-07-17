@@ -13,7 +13,7 @@ A modern React-based User Administration Portal that provides secure authenticat
 * Cookie-based Token Storage
 * Protected Routes
 * Automatic Authentication State Management
-* Role-Based Authorization
+Role-Based Authorization
 
 ### User Management
 
